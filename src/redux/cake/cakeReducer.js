@@ -1,19 +1,17 @@
-import { BUY_CAKE } from "./cakeTypes";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   numOfCakes: 10,
 };
 
-const cakeReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case BUY_CAKE:
-      return {
-        ...state,
-        numOfCakes: state.numOfCakes - 1,
-      };
-    default:
-      return state;
-  }
-};
-
-export default cakeReducer;
+const cakeReducer = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    decrement: (state) => {
+      state.numOfCakes -= 1;
+    },
+  },
+});
+export const { decrement } = cakeReducer.actions;
+export default cakeReducer.reducer;
